@@ -16,16 +16,17 @@ insert into CATEGORIE(category_name) values('Antipasto');
 DROP TABLE IF EXISTS MENU;
 create table MENU(
 	menu_id serial primary key,
-	menu_name varchar(20) not null,
-	price float not null,
+	name varchar(20) not null,
+	price decimal(4,2) not null,
 	description varchar(60),
-	categorie_id int,	
-	foreign key (categorie_id) references CATEGORIE (categorie_id)  on delete cascade
+	categorie_id integer,	
+	foreign key (categorie_id) references CATEGORIE (categorie_id)  
 	
 	
 	
 );
 
-DROP TABLE IF EXISTS ordini;
-create table ordini(
+--DROP TABLE IF EXISTS ordini;
+--create table ordini(
+--client_id serial primary key;
 
