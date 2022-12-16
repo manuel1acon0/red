@@ -7,18 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@RequestMapping("/red/menu")
+@RequestMapping("/menu")
 public class MenuCtr {
 
 	private static Logger log = LoggerFactory.getLogger(MenuCtr.class);
 
+
 	private MenuRepository repo;
 	
-	@GetMapping ("/detail")
+	public MenuCtr(MenuRepository repo) {
+		// this.svc = svc;
+		this.repo = repo;
+	}
+	
+
+	@GetMapping
 	public String Detail(Model model, @RequestParam Integer categoryId) {
 		log.trace("show menu detail");
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
-		return "/menu";
+		return "/cart";
 		
 	}
 }
