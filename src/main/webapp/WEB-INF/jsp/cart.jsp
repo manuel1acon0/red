@@ -19,7 +19,7 @@
 				<td>${category.name}</td>
 				<td>
 				<figure>
-					<img src="/red/pic/Antipasti.PNG" alt=" ${category.name}" width="20">
+					<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="20">
 				</figure>
 				</td>
 				
