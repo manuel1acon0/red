@@ -1,5 +1,7 @@
 package com.example.demo.red;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,13 @@ public class MenuCtr {
 
 	private static Logger log = LoggerFactory.getLogger(MenuCtr.class);
 
-
 	private MenuRepository repo;
 	
-	public MenuCtr(MenuRepository repo) {
-		// this.svc = svc;
+	private CartRepository repoC;
+
+	public MenuCtr(MenuRepository repo, CartRepository repoC) {
 		this.repo = repo;
+		this.repoC = repoC;
 	}
 	
 
@@ -28,7 +31,16 @@ public class MenuCtr {
 		log.trace("show menu detail");
 		model.addAttribute("details", repo.findByCategoryId(id));
 		return "/cart";
-		
-	}
-}
 
+	}
+
+	@GetMapping("/add")
+	public String add(Model model, Integer id) {
+		log.trace("item added");
+		Optional<Menu> menu = repo.findById(id);
+		model.addAttribute("menu", menu.get());
+		return "/menu";
+	}
+	
+	
+}
