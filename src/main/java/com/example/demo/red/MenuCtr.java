@@ -2,11 +2,13 @@ package com.example.demo.red;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Controller
 @RequestMapping("/menu")
 public class MenuCtr {
 
@@ -22,9 +24,9 @@ public class MenuCtr {
 	
 
 	@GetMapping
-	public String Detail(Model model, @RequestParam Integer categoryId) {
+	public String detail(Model model, @RequestParam Integer id) {
 		log.trace("show menu detail");
-		model.addAttribute("details", repo.findByCategoryId(categoryId));
+		model.addAttribute("details", repo.findByCategoryId(id));
 		return "/cart";
 		
 	}

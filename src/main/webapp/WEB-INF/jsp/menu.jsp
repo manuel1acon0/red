@@ -28,9 +28,10 @@
 				<td style="padding-left:20px;" >${category.name}</td>
 				<td style="padding-left:20px;" >
 				<br>
+				<a href="/menu?id=${category.id}" >
 				<button> 
 					<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="200px" >
-				</button>
+				</button></a>
 				</td>
 				
 			</tr>
