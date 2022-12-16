@@ -18,7 +18,7 @@ public class MenuCtr {
 	public String Detail(Model model, @RequestParam Integer categoryId) {
 		log.trace("show menu detail");
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
-		return "/menu";
+		return "/cart";
 		
 	}
 }
