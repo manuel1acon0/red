@@ -17,6 +17,11 @@
 			<tr>
 				<td>${category.id}</td>
 				<td>${category.name}</td>
+				<td>
+				<figure>
+					<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="20">
+				</figure>
+				</td>
 				
 			</tr>
 		</c:forEach>
