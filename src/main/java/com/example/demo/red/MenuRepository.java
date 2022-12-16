@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface MenuRepository extends CrudRepository<Menu, Integer> {
 
-	@Query("select m from Menu m where m.categoryId = :categoryId")
-	Iterable<Menu> findByCategoryId(Integer categoryId);
+	@Query("select m from Menu m where m.categoryId = :id")
+	Iterable<Menu> findByCategoryId(Integer id);
 
 }
