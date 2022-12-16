@@ -33,12 +33,16 @@ public class MenuCtr {
 		return "/cart";
 
 	}
-
+	
+	
 	@GetMapping("/add")
 	public String add(Model model, Integer id) {
 		log.trace("item added");
 		Optional<Menu> menu = repo.findById(id);
-		model.addAttribute("menu", menu.get());
+		Menu menu1 = menu.get();
+		Cart cart = menu1.menuFilter();
+		Iterable<Menu> cart1 = repo.menuFilter();
+		
 		return "/menu";
 	}
 	
