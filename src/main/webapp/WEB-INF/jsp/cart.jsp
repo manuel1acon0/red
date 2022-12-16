@@ -9,15 +9,14 @@
 	<title>Insert title here</title>
 </head>
 
-<body>
+<body id="body">
 	<div class="container-fluid">
 	 	<div class="row">
-   	
-
 	</div>
 <table class="table table-striped table-hover table-light" >
 		<thead>
 		<tr id="first-row" class="table">
+			<td scope="row" style="padding-left: 20px;"></td>
 			<td scope="row" style="padding-left: 20px;">Nome</td>
 			<td scope="row" style="padding-left: 20px;">Descrizione</td>
 			<td scope="row" style="padding-left: 20px;">Prezzi</td>
@@ -26,17 +25,19 @@
 		
 		<c:forEach var="detail" items="${details}">
 			<tr>
-				<td style="padding-left:20px;" >${detail.name}</td>
-				<td style="padding-left:20px;" >${detail.description}</td>
-				<td style="padding-left:20px;" >${detail.price}</td>
-				<td style="padding-left:20px;" >
-				<br>
+				<td><img src="/red/pic/${detail.name}.PNG" alt=" ${detail.name}" width="500px"></td>
+				
+				<td style="padding-left:20px;"><h3>${detail.name}</h3></td>
+				<td style="padding-left:20px;">${detail.description}</td>
+				<td style="padding-left:20px;">${detail.price}</td>
+				
+<!-- 				<br> -->
 <%-- 				<a href="/menu?id=${category.id}" > --%>
-				<button> 
-					<img src="/red/pic/${detail.name}.PNG" alt=" ${detail.name}" width="200px" >
-				</button>
+				
+					<td><a href="/menu/add?id=${detail.id}"><img src="/red/pic/AddIcon.PNG" alt="add" width="40"></a></td>
+				
 <!-- 				</a> -->
-				</td>
+				
 				
 			</tr>
 		</c:forEach>

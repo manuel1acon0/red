@@ -50,7 +50,7 @@ public class MenuCtr {
 			session.setAttribute("items", items);
 		}
 		items.add(item);
-
+		model.addAttribute("details",repo.findByCategoryId(id));
 		return "/menu";
 	}
 
