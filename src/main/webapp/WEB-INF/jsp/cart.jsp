@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Catergories</title>
+<title>Categories</title>
 </head>
 <body>
 <table style= "text-align: center" >

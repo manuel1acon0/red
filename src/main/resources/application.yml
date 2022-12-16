@@ -4,8 +4,8 @@ logging:
       example: TRACE
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=stem
-    username: stem
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=red
+    username: red
     password: password
   mvc:
     view:
