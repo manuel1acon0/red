@@ -4,15 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/red/css/red.css">
+	<title>Insert title here</title>
 </head>
+
 <body>
-<div class="container-fluid">
- <div class="row">
-   		<div class="col-3" style="padding-top: 62px;">
-<%-- 			<h2 id="title" style="padding-left: 15px;">${details.name}</h2> --%>
-		</div>
+	<div class="container-fluid">
+	 	<div class="row">
+   	
+
 	</div>
 <table class="table table-striped table-hover table-light" >
 		<thead>

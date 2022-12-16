@@ -1,0 +1,26 @@
+#body{
+	background-color: #808000;
+}
+
+.table {
+    margin-top: 20px;
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    border: 1px solid black;
+    padding: 3px;
+    text-align: center;
+}
+
+#titleA{
+	color: white;
+	font-style:oblique;
+}
+
+#ref{
+	color: white;
+}

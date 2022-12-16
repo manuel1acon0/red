@@ -4,43 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Categories</title>
+	<meta charset="UTF-8">
+	<title>Categories</title>
+	<link rel="stylesheet" type="text/css" href="/red/css/red.css">
 </head>
-<body>
-<div class="container-fluid">
- <div class="row">
-   		<div class="col-3" style="padding-top: 62px;">
-			<h2 id="title" style="padding-left: 15px;">MENU</h2>
+
+<body id="body">
+	<div class="container-fluid" >
+	
+		<h1 class="title ">MENU</h1>
+		
+		<div class="table" >
+		<c:forEach var="category" items="${categories}">
+				<a href="/menu?id=${category.id}" >
+					<button>
+						<div >
+							<h1>${category.name}</h1>
+							<br>
+							<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="80%" >
+						</div>
+					</button>
+				</a>
+			<br>
+		</c:forEach>
+		
 		</div>
 	</div>
-<table class="table table-striped table-hover table-light" >
-		<thead>
-		<tr id="first-row" class="table">
-			<td scope="row" style="padding-left: 20px;">Id</td>
-			<td scope="row" style="padding-left: 20px;"> name</td>
-		</tr>
-		</thead>
-		
-		<c:forEach var="category" items="${categories}">
-			<tr>
-				<td style="padding-left:20px;" >${category.id}</td>
-				<td style="padding-left:20px;" >${category.name}</td>
-				<td style="padding-left:20px;" >
-				<br>
-				<a href="/menu?id=${category.id}" >
-				<button> 
-					<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="200px" >
-				</button></a>
-				</td>
-				
-			</tr>
-		</c:forEach>
-	</table>
-</div>
-
-		
-		
-
 </body>
 </html>
