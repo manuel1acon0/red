@@ -21,7 +21,7 @@
 						<div >
 							<h1>${category.name}</h1>
 							<br>
-							<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="80%" >
+							<img src="/red/pic/${category.name}.PNG" alt=" ${category.name}" width="800px" >
 						</div>
 					</button>
 				</a>
