@@ -14,8 +14,9 @@
 
 <!--  <div class="row"> -->
 <!--         <div class="offset-8 col-4" style="padding-top: 5px;"> -->
-	<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;" >Cart </button> 
+	<p><a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 20px;padding-left: 20px;padding-top: 10px;padding-bottom: 10px;" ><img src="/red/pic/Cart.PNG" alt="add" width="30"></button> 
 	</a>
+	</p>
 	<br>
 	<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;" > Categories </button> 
 	</a>
