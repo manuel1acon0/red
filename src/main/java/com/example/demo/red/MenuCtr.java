@@ -57,12 +57,31 @@ public class MenuCtr {
 		} else {
 			model.addAttribute("error", "Item does not exist");
 		}
+		double sum=0;
+		for (var item : items) {
+			
+			sum = sum+item.getPrice();
+			
+		}
+		
 		model.addAttribute("count", items.size());
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
 	}
+//	@GetMapping("/sum")
+//	public String sum(List<Menu> items,Model model) {
+//		double sum=0;
+//		for (var item : items) {
+//			
+//			sum = sum+item.getPrice();
+//	}
+//		model.addAttribute("sum", sum);
+//		return"/cart";
+//	}
+	
 	@GetMapping("/finish")
 	public String finish() {
+		 
 		return "/cart";
 	}
 }

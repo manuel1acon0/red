@@ -11,9 +11,17 @@
 
 <body id="body">
 	<div class="container-fluid">
-	<a href="/menu/finish"><button type="button" class="btn btn-dark"  >finish</button> 
+
+<!--  <div class="row"> -->
+<!--         <div class="offset-8 col-4" style="padding-top: 5px;"> -->
+	<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;" >Cart </button> 
 	</a>
-	
+	<br>
+	<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;" > Categories </button> 
+	</a>
+	<c:if test="${not empty count}">
+	<p> hai selezionato ${count} prodotti </p>
+	</c:if>
 		<div class="table">
 			<c:forEach var="detail" items="${details}">
 						<div>

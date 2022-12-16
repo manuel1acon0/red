@@ -24,5 +24,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+<%-- 	<p>${sum}</p> --%>
+	
 </body>
 </html>
