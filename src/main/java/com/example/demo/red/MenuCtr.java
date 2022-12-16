@@ -34,24 +34,35 @@ public class MenuCtr {
 	public String detail(Model model, @RequestParam Integer id) {
 		log.trace("show menu detail");
 		model.addAttribute("details", repo.findByCategoryId(id));
-		return "/cart";
+		return "/menu";
 
 	}
 
 	@GetMapping("/add")
-	public String add(HttpSession session, @RequestParam Integer id, Model model) {
+	public String add(HttpSession session, @RequestParam Integer id, Model model,@RequestParam Integer categoryId) {
 		log.trace("item added");
-		Optional<Menu> menu = repo.findById(id);
-		Menu item = menu.get();
 		@SuppressWarnings("unchecked")
 		List<Menu> items = (List<Menu>) session.getAttribute("items");
 		if (items == null) {
 			items = new ArrayList<>();
 			session.setAttribute("items", items);
 		}
-		items.add(item);
-		model.addAttribute("details",repo.findByCategoryId(id));
+		Optional<Menu> menu = repo.findById(id);
+		if (menu.isPresent()) {
+
+			Menu item = menu.get();
+
+			items.add(item);
+
+		} else {
+			model.addAttribute("error", "Item does not exist");
+		}
+		model.addAttribute("count", items.size());
+		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
 	}
-
+	@GetMapping("/finish")
+	public String finish() {
+		return "/cart";
+	}
 }
