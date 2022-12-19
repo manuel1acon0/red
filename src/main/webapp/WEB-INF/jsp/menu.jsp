@@ -42,7 +42,7 @@
 			<c:forEach var="detail" items="${details}">
 				<p>
 					
-					<div class="img-thumbnail" style="margin-left: 150px;margin-right: 150px;margin-top: 150px;">
+					<div class="img-thumbnail" style="margin-left: 150px;margin-right: 150px;margin-top: 120px;">
 					<div class="row">
 					<div class="col-5">
 						<h3>${detail.name}</h3>
@@ -58,7 +58,7 @@
 					</div>
 <!-- 					<div class="row"> -->
 <!-- 					<div class="offset-2 col-6"> -->
-							<img class="flex" src="/red/pic/${detail.name}.PNG" alt=" ${detail.name}" style="margin-left: 130px; margin-right: 130px">
+							<img class="flex" src="/red/pic/${detail.name}.PNG" alt=" ${detail.name}" style="padding-right: 55px; padding-left: 55px;">
 <!-- 					</div> -->
 <!-- 					</div> -->
 						<br>
