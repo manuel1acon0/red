@@ -23,9 +23,9 @@ public class MenuCtr {
 
 	private MenuRepository repo;
 
-	private CartRepository repoC;
+	private CategoryRepository repoC;
 
-	public MenuCtr(MenuRepository repo, CartRepository repoC) {
+	public MenuCtr(MenuRepository repo, CategoryRepository repoC) {
 		this.repo = repo;
 		this.repoC = repoC;
 	}
@@ -39,7 +39,7 @@ public class MenuCtr {
 	}
 
 	@GetMapping("/add")
-	public String add(HttpSession session, @RequestParam Integer id, Model model,@RequestParam Integer categoryId) {
+	public String add(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
 		log.trace("item added");
 		@SuppressWarnings("unchecked")
 		List<Menu> items = (List<Menu>) session.getAttribute("items");
@@ -57,17 +57,39 @@ public class MenuCtr {
 		} else {
 			model.addAttribute("error", "Item does not exist");
 		}
-		double sum=0;
-		for (var item : items) {
-			
-			sum = sum+item.getPrice();
-			
-		}
-		
+
 		model.addAttribute("count", items.size());
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
 	}
+
+	@GetMapping("/remove")
+	public String remove(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
+		log.trace("Item removed");
+		@SuppressWarnings("unchecked")
+		List<Menu> items = (List<Menu>) session.getAttribute("items");
+		Optional<Menu> menu = repo.findById(id);
+		Menu item = menu.get();
+		items.remove(item);
+
+		model.addAttribute("count", items.size());
+		model.addAttribute("details", repo.findByCategoryId(categoryId));
+		return "/menu";
+	}
+
+	@GetMapping("/removeAll")
+	public String removeAll(HttpSession session, Model model) {
+		log.trace("All items removed");
+		@SuppressWarnings("unchecked")
+		List<Menu> items = (List<Menu>) session.getAttribute("items");
+
+		items.removeAll(items);
+
+		model.addAttribute("count", items.size());
+		model.addAttribute("categories", repoC.findAll());
+		return "/category";
+	}
+
 //	@GetMapping("/sum")
 //	public String sum(List<Menu> items,Model model) {
 //		double sum=0;
@@ -78,10 +100,19 @@ public class MenuCtr {
 //		model.addAttribute("sum", sum);
 //		return"/cart";
 //	}
-	
+
 	@GetMapping("/finish")
-	public String finish() {
-		 
+	public String finish(HttpSession session, Model model) {
+		@SuppressWarnings("unchecked")
+		List<Menu> items = (List<Menu>) session.getAttribute("items");
+
+		double sum = 0;
+		for (var item : items) {
+
+			sum = sum + item.getPrice();
+
+		}
+		model.addAttribute("sum", sum);
 		return "/cart";
 	}
 }
