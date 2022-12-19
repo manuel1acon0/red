@@ -54,12 +54,12 @@
 					<div class="row">
 					<div class="offset-2 col-4">
 						<a href="/menu/add?id=${detail.id}&categoryId=${detail.categoryId}">
-						<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">+</button>
+						<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;"><img src="/red/pic/piu.png" alt="add" width="30"></button>
 						</a>
 					</div>
 					<div class="col-6">
 						<a href="/menu/remove?id=${detail.id}&categoryId=${detail.categoryId}">
-						<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">-</button>
+						<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;"><img src="/red/pic/meno.png" alt="remove" width="30"></button>
 						</a>
 					</div>
 					</div>
