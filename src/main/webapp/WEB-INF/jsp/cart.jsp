@@ -23,8 +23,16 @@
 				<td>${item.price}</td>				
 			</tr>
 		</c:forEach>
+		
 	</table>
-<%-- 	<p>${sum}</p> --%>
+	<p>Totale ordine: ${sum}</p>
+	<a href="/menu/removeAll">
+					
+
+					<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">Svuota</button>
+
+					</a>
+	
 	
 </body>
 </html>

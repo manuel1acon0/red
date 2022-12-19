@@ -13,16 +13,18 @@
 	<div class="container-fluid">
 
  <div class="row">
-<!--         <div class="offset-8 col-1" style="padding-top: 5px;"> -->
+
 	<div class="col-2 offset-2">
-		<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 20px;padding-left: 20px;padding-top: 10px;padding-bottom: 10px;" ><img src="/red/pic/Cart.PNG" alt="add" width="30"></button> 
-		</a>
+<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;" > Categories </button> 
+	</a>
+		
 		
 		</div>
 	
 	<div class="col-2">
-	<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;" > Categories </button> 
-	</a>
+	<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 20px;padding-left: 20px;padding-top: 10px;padding-bottom: 10px;" ><img src="/red/pic/Cart.PNG" alt="add" width="30"></button> 
+		</a>
+	</div>
 	</div>
 	
 	<c:if test="${not empty count}">
@@ -52,7 +54,7 @@
 				<br>
 			</c:forEach>
 		</div>
-		</div>
+		
 	
 	</div>
 	
