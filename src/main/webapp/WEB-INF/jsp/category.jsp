@@ -19,7 +19,7 @@
 <%-- 	</c:if> --%>
 		<div class="row">
 		<div class="offset-1 col-10">
-		<h1 class="img-thumbnail" align="center">MENU</h1>
+		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">MENU</h1>
 		</div>
 		</div>
 		<p>	

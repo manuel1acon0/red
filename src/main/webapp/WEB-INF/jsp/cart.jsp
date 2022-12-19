@@ -11,26 +11,33 @@
         <link rel="stylesheet" type="text/css" href="/red/css/red.css">
 <title>Cart</title>
 </head>
-<body>
+<body id="body">
 <div class="container-fluid">
-<h1>CART</h1>
+<div class="row">
+		<div class="offset-1 col-10">
+		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">ORDINE</h1>
+		</div>
+		</div>
+
 
 <table class="table table-striped table-hover" style="text-align: center" >
 		<tr id=row>
 			
-			<td><h3>Name</h3></td>
-			<td><h3>Price</h3></td>
-			<td><h3>Quantity</h3></td>
+			<td><h3>Prodotto</h3></td>
+			<td><h3>Prezzo</h3></td>
+			<td><h3 style="padding-left: 60px;">Quantità</h3></td>
 		</tr>
 		<c:forEach var="order" items="${orders}">
 			<tr>
-				<td>${order.name}</td>
-				<td>€ ${order.price}</td>	
+				<td style="padding-top: 15px">${order.name}</td>
+				<td style="padding-top: 15px">€ ${order.price}</td>	
 				
 				<td>
-<!-- 				<div>-</div> -->
-				<div>${order.quantity}</div>
-<!-- 				<div>+</div> -->
+				<div class="row">
+				<div class="offset-4 col-1"><button type="button" class="btn btn-dark"><img src="/red/pic/piu.png" alt="add" width="15"></button></div>
+				<div class="offset-1 col-1" style="padding-top: 8px">${order.quantity}</div>
+				<div class="offset-1 col-1"><button type="button" class="btn btn-dark"><img src="/red/pic/meno.png" alt="remove" width="15"></button></div>
+				</div>
 				</td>
 					
 			</tr>
