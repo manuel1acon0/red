@@ -38,78 +38,97 @@ public class MenuCtr {
 
 	}
 
+	public boolean findId(Integer id, List<Order> orders) {
+		for (var order : orders) {
+			if (order.getId() == id) {
+				order.setQuantity(order.getQuantity()+1);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public Integer totalQuantity (List<Order> orders) {
+		Integer sum=0;
+		for (var order : orders) {
+			sum=sum+order.getQuantity();
+		}
+		return sum;
+	}
+	
+	public boolean findOrder(List<Order> orders) {
+		for (var order : orders) {
+			if (order.getQuantity() > 1) {
+				order.setQuantity(order.getQuantity()-1);
+				return false;
+			}
+		}
+		return true;
+	}
+
 	@GetMapping("/add")
 	public String add(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
-		log.trace("item added");
+		log.trace("order added");
 		@SuppressWarnings("unchecked")
-		List<Menu> items = (List<Menu>) session.getAttribute("items");
-		if (items == null) {
-			items = new ArrayList<>();
-			session.setAttribute("items", items);
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		if (orders == null) {
+			orders = new ArrayList<>();
+			session.setAttribute("orders", orders);
 		}
-		Optional<Menu> menu = repo.findById(id);
-		if (menu.isPresent()) {
+		Order order = null;
+		if (findId(id, orders)) {
+			Optional<Menu> opt = repo.findById(id);
+			if (opt.isPresent()) {
+				order = new Order(opt.get());
+				order.setQuantity(1);
+				orders.add(order);
 
-			Menu item = menu.get();
-
-			items.add(item);
-
-		} else {
-			model.addAttribute("error", "Item does not exist");
+			} else {
+				model.addAttribute("error", "Item does not exist");
+			}
 		}
-
-		model.addAttribute("count", items.size());
+		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
 	}
 
 	@GetMapping("/remove")
 	public String remove(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
-		log.trace("Item removed");
+		log.trace("Order removed");
 		@SuppressWarnings("unchecked")
-		List<Menu> items = (List<Menu>) session.getAttribute("items");
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
 		Optional<Menu> menu = repo.findById(id);
-		Menu item = menu.get();
-		items.remove(item);
-
-		model.addAttribute("count", items.size());
+		Order order = new Order(menu.get());
+		if (findOrder(orders)) {
+			orders.remove(order);	
+		}
+		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
 	}
 
 	@GetMapping("/removeAll")
 	public String removeAll(HttpSession session, Model model) {
-		log.trace("All items removed");
+		log.trace("All orders removed");
 		@SuppressWarnings("unchecked")
-		List<Menu> items = (List<Menu>) session.getAttribute("items");
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
 
-		items.removeAll(items);
+		orders.removeAll(orders);
 
-		model.addAttribute("count", items.size());
+		model.addAttribute("count",totalQuantity(orders));
 		model.addAttribute("categories", repoC.findAll());
 		return "/category";
 	}
 
-//	@GetMapping("/sum")
-//	public String sum(List<Menu> items,Model model) {
-//		double sum=0;
-//		for (var item : items) {
-//			
-//			sum = sum+item.getPrice();
-//	}
-//		model.addAttribute("sum", sum);
-//		return"/cart";
-//	}
-
 	@GetMapping("/finish")
 	public String finish(HttpSession session, Model model) {
 		@SuppressWarnings("unchecked")
-		List<Menu> items = (List<Menu>) session.getAttribute("items");
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
 
 		double sum = 0;
-		for (var item : items) {
+		for (var order : orders) {
 
-			sum = sum + item.getPrice();
+			sum = sum + order.getPrice()*order.getQuantity();
 
 		}
 		model.addAttribute("sum", sum);
