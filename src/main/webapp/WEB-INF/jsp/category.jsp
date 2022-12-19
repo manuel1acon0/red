@@ -13,12 +13,21 @@
 
 <body id="body">
 	<div class="container-fluid">
-		<h1 class="title">MENU</h1>
-		<div class="table">
+	
+<%-- 	<c:if test="${not empty count}"> --%>
+<%-- 	<p> hai selezionato ${count} prodotti </p> --%>
+<%-- 	</c:if> --%>
+		<div class="row">
+		<div class="offset-1 col-10">
+		<h1 class="img-thumbnail" align="center">MENU</h1>
+		</div>
+		</div>
+		<p>	
+		<div class="table" class="img-thumbnail">
 			<c:forEach var="category" items="${categories}">
 				<a href="/menu?id=${category.id}">
-				<p>
-					<button>
+				
+					<button class="btn btn-light" class="rounded">
 						<div>
 							<h1>${category.name}</h1>
 							<br> <img src="/red/pic/${category.name}.PNG"

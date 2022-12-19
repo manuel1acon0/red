@@ -13,19 +13,19 @@
 </head>
 <body>
 <div class="container-fluid">
-<h1>Cart</h1>
+<h1>CART</h1>
 
 <table class="table table-striped table-hover" style="text-align: center" >
-		<tr>
+		<tr id=row>
 			
-			<td>Name</td>
-			<td>Price</td>
-			<td>Quantity</td>
+			<td><h3>Name</h3></td>
+			<td><h3>Price</h3></td>
+			<td><h3>Quantity</h3></td>
 		</tr>
 		<c:forEach var="item" items="${items}">
 			<tr>
 				<td>${item.name}</td>
-				<td>${item.price}</td>	
+				<td>€ ${item.price}</td>	
 				
 				<td>
 <!-- 				<div>-</div> -->
@@ -38,7 +38,7 @@
 		
 	</table>
 	
-	<p>Totale ordine: ${sum}</p>
+	<p>Totale ordine: € ${sum}</p>
 	<a href="/menu/removeAll">
 					
 

@@ -3,7 +3,7 @@
 }
 
 .table {
-    margin-top: 20px;
+    margin-top: 10px;
 /*     border: 2px solid black; */
     border-collapse: collapse;
     width: 100%;
@@ -11,8 +11,8 @@
 }
 
 .title {
-    border: 1px solid black;
-    padding: 3px;
+/*     border: 1px solid black; */
+/*     padding: 3px; */
     text-align: center;
 }
 
@@ -29,3 +29,6 @@
 	color: grey;
 }
 
+#row{
+	background-color: grey;
+}
