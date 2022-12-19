@@ -30,8 +30,7 @@
 					<button class="btn btn-light" class="rounded">
 						<div>
 							<h1>${category.name}</h1>
-							<br> <img src="/red/pic/${category.name}.PNG"
-								alt=" ${category.name}" width="800px">
+							<br> <img src="/red/pic/${category.name}.PNG" class="flex" alt=" ${category.name}">
 						</div>
 					</button>
 				</p>

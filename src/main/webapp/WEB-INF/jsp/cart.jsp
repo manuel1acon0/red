@@ -22,14 +22,14 @@
 			<td><h3>Price</h3></td>
 			<td><h3>Quantity</h3></td>
 		</tr>
-		<c:forEach var="item" items="${items}">
+		<c:forEach var="order" items="${orders}">
 			<tr>
-				<td>${item.name}</td>
-				<td>€ ${item.price}</td>	
+				<td>${order.name}</td>
+				<td>€ ${order.price}</td>	
 				
 				<td>
 <!-- 				<div>-</div> -->
-				<div>X</div>
+				<div>${order.quantity}</div>
 <!-- 				<div>+</div> -->
 				</td>
 					
