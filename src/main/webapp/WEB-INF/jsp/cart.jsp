@@ -12,8 +12,9 @@
 <title>Cart</title>
 </head>
 <body>
-<h1>Cart</h1>
 <div class="container-fluid">
+<h1>Cart</h1>
+
 <table class="table table-striped table-hover" style="text-align: center" >
 		<tr>
 			
@@ -36,7 +37,7 @@
 		</c:forEach>
 		
 	</table>
-	</div>
+	
 	<p>Totale ordine: ${sum}</p>
 	<a href="/menu/removeAll">
 					
@@ -45,6 +46,6 @@
 
 					</a>
 	
-	
+	</div>
 </body>
 </html>
