@@ -66,7 +66,10 @@
 		</div>
 		<nav class="navbar fixed-bottom navbar-light bg-light">
 			<div class="col-1">
-				<a href="/menu/home"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">Home</button> 
+				<a href="/menu/home"><button type="button" class="btn btn-dark" 
+				style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
+				<img src="/red/pic/Home.PNG" alt="Home" width="60">
+				</button> 
 <!-- 		<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button>  -->
 				</a>
 			</div>
@@ -85,7 +88,7 @@
             <!-- Button trigger modal 2 -->
             <button type="button" data-bs-toggle="modal" data-bs-target="#infoModal"
             class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
-                Info
+            <img src="/red/pic/Info.PNG" alt="Info" width="60">
             </button>
             
             <!-- Button trigger modal 3 -->
