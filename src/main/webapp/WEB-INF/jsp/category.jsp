@@ -65,20 +65,80 @@
 
 		</div>
 		<nav class="navbar fixed-bottom navbar-light bg-light">
-			 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Open demo modal
+			<div class="col-1">
+				<a href="/menu/home"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">Home</button> 
+<!-- 		<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button>  -->
+				</a>
+			</div>
+            <!-- Button trigger modal 1 -->
+            <button type="button" data-bs-toggle="modal" data-bs-target="#menuModal"
+            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
+                Menu
+            </button>
+            
+            <!-- Button trigger modal 4 -->
+            <button type="button" data-bs-toggle="modal" data-bs-target="#cercaModal"
+            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
+                Cerca
+            </button>
+            
+            <!-- Button trigger modal 2 -->
+            <button type="button" data-bs-toggle="modal" data-bs-target="#infoModal"
+            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
+                Info
+            </button>
+            
+            <!-- Button trigger modal 3 -->
+            <button type="button" data-bs-toggle="modal" data-bs-target="#contattiModal"
+            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
+                Contatti
             </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+		</nav>
+		
+            <!-- Modal 1 -->
+            <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="menuModalLabel">Menu</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">...</div>
+                        <div class="modal-body">
+                        	<div class="table" class="img-thumbnail">
+								<c:forEach var="category" items="${categories}">
+								<a href="/menu?id=${category.id}">
+				
+									<button class="btn btn-light" class="rounded">
+										<div>
+											<h4>${category.name}</h4>
+										</div>
+									</button>
+								</a>
+								<br>
+								</c:forEach>
+
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal 2 -->
+            <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="infoModalLabel">Info</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <h5>Pizzeria</h5>
+                        <h5>Telefono</h5>
+                        <h5>Indirizzo</h5>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Close
@@ -90,12 +150,58 @@
                     </div>
                 </div>
             </div>
-        </div>
-<!-- 					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/Menu.png" alt="menu" width="30"></button> -->
-					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/contatti.png" alt="contatti" width="30"></button>
-					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/dove.png" alt="dove" width="30"></button>
-					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/crea.png" alt="crea" width="30"></button>
-		</nav>
+            
+            <!-- Modal 3 -->
+            <div class="modal fade" id="contattiModal" tabindex="-1" aria-labelledby="contattiModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="contattiModalLabel">Contatti</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <h5>Whatsapp</h5>
+                        <h5>Facebook</h5>
+                        <h5>Instagram</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <!-- Modal 4 -->
+            <div class="modal fade" id="cercaModal" tabindex="-1" aria-labelledby="cercaModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cercaModalLabel">Cerca</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form action="/menu/search" >
+						<input type="text" name="name" style="padding-top: 10px; padding-bottom: 10px; margin-left: 10px; margin-top: 5px;">
+                        </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	</div>
 </body>
 </html>
