@@ -14,18 +14,28 @@
 <body id="body">
 <div class="container-fluid">
 <div class="row">
-		<div class="offset-1 col-10">
+<nav class="navbar fixed-top navbar-light bg-light">
+		<div class="col-1">
+			<a href="/menu/home">
+				<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">Menu</button>
+
+				</a>
+					</div>
+		<div class="offset-1 col-8">
 		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">ORDINE</h1>
 		</div>
+		
+		</nav>
 		</div>
 
 
-<table class="table table-striped table-hover" style="text-align: center" >
+<table class="table table-striped table-hover" style="text-align: center; margin-top: 90px" >
 		<tr id=row>
 			
 			<td><h3>Prodotto</h3></td>
 			<td><h3>Prezzo</h3></td>
 			<td><h3 style="padding-left: 60px;">Quantità</h3></td>
+			<td></td>
 		</tr>
 		<c:forEach var="order" items="${orders}">
 			<tr>
@@ -43,7 +53,9 @@
 				</a></div>
 				</div>
 				</td>
-					
+				<td>
+				<button type="button" class="btn btn-dark"><img src="/red/pic/Cestino.png" alt="remove" width="15"></button>
+				</td>	
 			</tr>
 		</c:forEach>
 		
@@ -56,12 +68,7 @@
 					<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">Svuota</button>
 
 					</a>
-		<a href="/menu/home">
-					
 
-					<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">Home</button>
-
-					</a>
 	
 	</div>
 </body>
