@@ -34,15 +34,15 @@
 		<div class="container">
 			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="add" width="60"></button> 
 			</a>
-		</div>
 	
-		<div class="box">
-			<c:if test="${not empty count}">
-				<p class="notify">${count}</p>
-			</c:if>
+			<div class="box">
+				<c:if test="${not empty count}">
+					<p class="notify">${count}</p>
+				</c:if>
+			</div>
+			<div class="box overlay"></div>
 		</div>
-		<div class="box overlay"></div>
-		</div>
+	</div>
 	</div>
 	</nav>
 	
