@@ -95,9 +95,11 @@
 			</c:forEach>	
 		</div>
 		<nav class="navbar fixed-bottom navbar-light bg-light">
-			<a href="/menu/remove?id=${detail.id}&categoryId=${detail.categoryId}">
-					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;"><img src="/red/pic/Menu.png" alt="remove" width="30"></button>
-			</a>
+			
+					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/Menu.png" alt="menu" width="30"></button>
+					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/contatti.png" alt="contatti" width="30"></button>
+					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/dove.png" alt="dove" width="30"></button>
+					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/crea.png" alt="crea" width="30"></button>
 		</nav>
 		</div>	
 </body>
