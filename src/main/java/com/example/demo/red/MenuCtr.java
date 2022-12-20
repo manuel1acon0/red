@@ -162,6 +162,14 @@ public class MenuCtr {
 			}
 		}
 
+		double sum = 0;
+		for (var order : orders) {
+
+			sum = sum + order.getPrice() * order.getQuantity();
+
+		}
+		model.addAttribute("sum", sum);
+
 		return "/cart";
 	}
 
@@ -186,6 +194,14 @@ public class MenuCtr {
 				model.addAttribute("error", "Item does not exist");
 			}
 		}
+
+		double sum = 0;
+		for (var ord : orders) {
+
+			sum = sum + ord.getPrice() * ord.getQuantity();
+
+		}
+		model.addAttribute("sum", sum);
 
 		return "cart";
 	}
