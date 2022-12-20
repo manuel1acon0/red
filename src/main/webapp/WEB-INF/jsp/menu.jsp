@@ -15,29 +15,37 @@
 <div class="container-fluid">
 
 <nav class="navbar fixed-top navbar-light bg-light">
+
 <!--   <a class="navbar-brand" href="#">Fixed top</a> -->
 <!-- </nav> -->
 
  	<div class="row">
 	<div class="col-1">
 		<a href="/menu/home"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button> 
+<!-- 		<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button>  -->
 		</a>
 		</div>
 		<div class="offset-1 col-8">
-		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">CATEGORIE</h1>
+			<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">CATEGORIE</h1>
+				
 		</div>
 	
 	<div class="offset-1 col-1">
-		<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="add" width="60"></button> 
-		</a>
-	</div>
-	</div>
-	<br>
-	<c:if test="${not empty count}">
+		<div class="container">
+			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="add" width="60"></button> 
+			</a>
+		</div>
 	
-	<p> hai selezionato ${count} prodotti </p>
-	</c:if>
+		<div class="box">
+			<c:if test="${not empty count}">
+				<p class="notify">${count}</p>
+			</c:if>
+		</div>
+		<div class="box overlay"></div>
+		</div>
+	</div>
 	</nav>
+	
 		<div class="table">
 			<c:forEach var="detail" items="${details}">
 				<p>

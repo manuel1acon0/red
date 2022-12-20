@@ -25,7 +25,7 @@
 		<p>	
 		<div class="table" class="img-thumbnail">
 			<c:forEach var="category" items="${categories}">
-				<a href="/menu?id=${category.id}">
+				<a href="/menu?id=${category.id}&name=${category.name}">
 				
 					<button class="btn btn-light" class="rounded">
 						<div>

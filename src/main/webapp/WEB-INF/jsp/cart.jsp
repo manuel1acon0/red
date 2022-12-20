@@ -34,9 +34,13 @@
 				
 				<td>
 				<div class="row">
-				<div class="offset-4 col-1"><button type="button" class="btn btn-dark"><img src="/red/pic/piu.png" alt="add" width="15"></button></div>
+				<div class="offset-4 col-1"><a href="/menu/addC?id=${order.id}">
+				<button type="button" class="btn btn-dark"><img src="/red/pic/piu.png" alt="add" width="15"></button>
+				</a></div>
 				<div class="offset-1 col-1" style="padding-top: 8px">${order.quantity}</div>
-				<div class="offset-1 col-1"><button type="button" class="btn btn-dark"><img src="/red/pic/meno.png" alt="remove" width="15"></button></div>
+				<div class="offset-1 col-1"><a href="/menu/removeC?id=${order.id}">
+				<button type="button" class="btn btn-dark"><img src="/red/pic/meno.png" alt="remove" width="15"></button>
+				</a></div>
 				</div>
 				</td>
 					
@@ -50,6 +54,12 @@
 					
 
 					<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">Svuota</button>
+
+					</a>
+		<a href="/menu/home">
+					
+
+					<button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;">Home</button>
 
 					</a>
 	
