@@ -14,9 +14,9 @@
 <body id="body">
 	<div class="container-fluid">
 	
-<%-- 	<c:if test="${not empty count}"> --%>
-<%-- 	<p> hai selezionato ${count} prodotti </p> --%>
-<%-- 	</c:if> --%>
+	<c:if test="${not empty count}">
+	<p> hai selezionato ${count} prodotti </p>
+	</c:if>
 		<div class="row">
 		<div class="offset-1 col-10">
 		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">MENU</h1>
