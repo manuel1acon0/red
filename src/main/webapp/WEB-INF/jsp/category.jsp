@@ -19,22 +19,23 @@
 	
 	<div class="row">
 	<nav class="navbar fixed-top navbar-light bg-light">
-		
-		<div class="offset-2 col-8">
+		<div class="col-3">
+			<form action="/menu/search" >
+			<input type="text" name="name" style="padding-top: 10px; padding-bottom: 10px; margin-left: 10px; margin-top: 5px;">
+			<button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-bottom: 5px;margin-top: 5px;"><img src="/red/pic/lente.PNG" alt="cerca" width="60"></button>
+     		</form>
+		</div>
+		<div class="offset-1 col-5">
 		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">MENU</h1>
 		</div>
-		<div class="offset-1 col-1">
+		<div class=" offset-1 col-2">
 		<div class="container">
 		<c:if test="${not empty count}">
-			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="add" width="60"></button> 
+			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="carrello" width="60"></button> 
 			</a>	
 		</c:if>
-			<form action="/menu/search" >
-		<label >cerca</label>
-		<input type="text"  name="name" >
-		<button>ok</button>
-     		</form>
-	
+		
+			
 			<div class="box">
 				<c:if test="${not empty count}">
 					<p class="notify">${count}</p>
