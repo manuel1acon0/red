@@ -13,13 +13,13 @@
 
 <body id="body">
 <div class="container-fluid">
-
+<div class="row">
 <nav class="navbar fixed-top navbar-light bg-light">
 
 <!--   <a class="navbar-brand" href="#">Fixed top</a> -->
 <!-- </nav> -->
 
- 	<div class="row">
+ 	
 	<div class="col-1">
 		<a href="/menu/home"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">Menu </button> 
 <!-- 		<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button>  -->
@@ -32,9 +32,15 @@
 	
 	<div class="offset-1 col-1">
 		<div class="container">
-			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="add" width="60"></button> 
+			
+			
+			
+	<c:if test="${not empty count}">
+	<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="add" width="60"></button> 
 			</a>
-	
+					
+				</c:if>
+				
 			<div class="box">
 				<c:if test="${not empty count}">
 					<p class="notify">${count}</p>
@@ -43,8 +49,9 @@
 			<div class="box overlay"></div>
 		</div>
 	</div>
-	</div>
 	</nav>
+	</div>
+	
 	
 		<div class="table">
 			<c:forEach var="detail" items="${details}">
@@ -84,10 +91,14 @@
 					</div>
 					</div>
 					</div>
-					
 				</p>		
-			</c:forEach>
+			</c:forEach>	
 		</div>
+		<nav class="navbar fixed-bottom navbar-light bg-light">
+			<a href="/menu/remove?id=${detail.id}&categoryId=${detail.categoryId}">
+					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;"><img src="/red/pic/Menu.png" alt="remove" width="30"></button>
+			</a>
+		</nav>
 		</div>	
 </body>
 </html>

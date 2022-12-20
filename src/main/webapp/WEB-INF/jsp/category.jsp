@@ -38,7 +38,7 @@
 		<p>	
 		<div class="table" class="img-thumbnail">
 			<c:forEach var="category" items="${categories}">
-				<a href="/menu?id=${category.id}&name=${category.name}">
+				<a href="/menu?id=${category.id}">
 				
 					<button class="btn btn-light" class="rounded" style="margin-top: 90px;">
 						<div>
@@ -52,6 +52,25 @@
 			</c:forEach>
 
 		</div>
+		<nav class="navbar fixed-bottom navbar-light bg-light">
+			
+					<button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 10px;padding-bottom: 10px;" data-toggle="modal" data-target="#Modal1"><img src="/red/pic/Menu.png" alt="remove" width="30"></button>
+<!-- 			<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true"> -->
+<!-- <div class="modal-dialog" role="document"> -->
+<!-- <div class="modal-content"> -->
+<!-- <div class="modal-header"> -->
+<!-- <h5 class="modal-title" id="ModalLabel">Here is a Modal title</h5> -->
+<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- <span aria-hidden="true">×</span> -->
+<!-- </button> -->
+<!-- </div> -->
+<!-- <div class="modal-body"> -->
+<!-- Here goes the content of the modal. -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+		</nav>
 	</div>
 </body>
 </html>

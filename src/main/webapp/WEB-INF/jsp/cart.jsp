@@ -21,9 +21,10 @@
 
 				</a>
 					</div>
-		<div class="offset-1 col-8">
+		<div class="offset-1 col-8" >
 		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">ORDINE</h1>
 		</div>
+		<div class="col-2"></div>
 		
 		</nav>
 		</div>
@@ -54,8 +55,9 @@
 				</div>
 				</td>
 				<td>
+				<a href="/menu/removeProduct?id=${order.id}">
 				<button type="button" class="btn btn-dark"><img src="/red/pic/Cestino.png" alt="remove" width="15"></button>
-				</td>	
+				</a></td>	
 			</tr>
 		</c:forEach>
 		
