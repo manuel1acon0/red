@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,21 +23,24 @@ public class MenuCtr {
 	private MenuRepository repo;
 
 	private CategoryRepository repoC;
+	private OrderSvc svc;
 
-	public MenuCtr(MenuRepository repo, CategoryRepository repoC) {
+	public MenuCtr(MenuRepository repo, CategoryRepository repoC, OrderSvc svc) {
 		this.repo = repo;
 		this.repoC = repoC;
+		this.svc = svc;
 	}
 
 	@GetMapping
-	public String detail(Model model, @RequestParam Integer id, HttpSession session,@RequestParam String name) {
+	public String detail(Model model, @RequestParam Integer id, HttpSession session) {
 		log.trace("show menu detail");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
 		if (orders != null) {
 			model.addAttribute("count", totalQuantity(orders));
 		}
-		model.addAttribute("name", name);
+
+		model.addAttribute("name", repoC.findById(id).get().getName());
 		model.addAttribute("details", repo.findByCategoryId(id));
 		return "/menu";
 
@@ -62,38 +64,16 @@ public class MenuCtr {
 		return sum;
 	}
 
-	private Optional<Order> find(List<Order> orders, Integer id) {
-		for (Order order : orders) {
-			if (order.getId() == id) {
-				return Optional.of(order);
-			}
-		}
-		return Optional.empty();
-	}
-
 	@GetMapping("/add")
 	public String add(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
 		log.trace("order added");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		if (orders == null) {
-			orders = new ArrayList<>();
-			session.setAttribute("orders", orders);
-		}
-		Order order = null;
-		if (findId(id, orders)) {
-			Optional<Menu> opt = repo.findById(id);
-			if (opt.isPresent()) {
-				order = new Order(opt.get());
-				order.setQuantity(1);
-				orders.add(order);
 
-			} else {
-				model.addAttribute("error", "Item does not exist");
-			}
-		}
+		svc.add(session, id, model);
 		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
+		model.addAttribute("name", repoC.findById(categoryId).get().getName());
 		return "/menu";
 	}
 
@@ -102,19 +82,24 @@ public class MenuCtr {
 		log.trace("Order removed");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		Optional<Order> opt = find(orders, id);
-		if (opt.isPresent()) {
-			Order order = opt.get();
-			int quantity = order.getQuantity();
-			if (quantity == 1) {
-				orders.remove(order);
-			} else {
-				order.setQuantity(quantity - 1);
-			}
-		}
+
+		svc.remove(session, id);
+		model.addAttribute("name", repoC.findById(categoryId).get().getName());
 		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
+	}
+
+	@GetMapping("/removeC")
+	public String removeC(HttpSession session, @RequestParam Integer id, Model model) {
+		log.trace("Order removed");
+
+		svc.remove(session, id);
+
+		double sum = svc.sum(session);
+		model.addAttribute("sum", sum);
+
+		return "/cart";
 	}
 
 	@GetMapping("/removeAll")
@@ -132,89 +117,41 @@ public class MenuCtr {
 
 	@GetMapping("/finish")
 	public String finish(HttpSession session, Model model) {
-		@SuppressWarnings("unchecked")
-		List<Order> orders = (List<Order>) session.getAttribute("orders");
 
-		double sum = 0;
-		for (var order : orders) {
-
-			sum = sum + order.getPrice() * order.getQuantity();
-
-		}
+		double sum = svc.sum(session);
 		model.addAttribute("sum", sum);
-		return "/cart";
-	}
-
-	@GetMapping("/removeC")
-	public String removeC(HttpSession session, @RequestParam Integer id, Model model
-			) {
-		log.trace("Order removed");
-		@SuppressWarnings("unchecked")
-		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		Optional<Order> opt = find(orders, id);
-		if (opt.isPresent()) {
-			Order order = opt.get();
-			int quantity = order.getQuantity();
-			if (quantity == 1) {
-				orders.remove(order);
-			} else {
-				order.setQuantity(quantity - 1);
-			}
-		}
-
-		double sum = 0;
-		for (var order : orders) {
-
-			sum = sum + order.getPrice() * order.getQuantity();
-
-		}
-		model.addAttribute("sum", sum);
-
 		return "/cart";
 	}
 
 	@GetMapping("/addC")
 	public String addC(HttpSession session, @RequestParam Integer id, Model model) {
 		log.trace("order added");
-		@SuppressWarnings("unchecked")
-		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		if (orders == null) {
-			orders = new ArrayList<>();
-			session.setAttribute("orders", orders);
-		}
-		Order order = null;
-		if (findId(id, orders)) {
-			Optional<Menu> opt = repo.findById(id);
-			if (opt.isPresent()) {
-				order = new Order(opt.get());
-				order.setQuantity(1);
-				orders.add(order);
 
-			} else {
-				model.addAttribute("error", "Item does not exist");
-			}
-		}
+		svc.add(session, id, model);
+		double sum = svc.sum(session);
 
-		double sum = 0;
-		for (var ord : orders) {
-
-			sum = sum + ord.getPrice() * ord.getQuantity();
-
-		}
 		model.addAttribute("sum", sum);
 
-		return "cart";
+		return "/cart";
 	}
 
-//	@GetMapping("/cartM")
-//	public String cartM(Model model, HttpSession session) {
-//		log.trace("Returning to menu");
-//		@SuppressWarnings("unchecked")
-//		List<Order> orders = (List<Order>) session.getAttribute("orders");
-//		model.addAttribute("count", totalQuantity(orders));
-//		model.addAttribute("details", repoC.findAll());
-//		return "/category";
-//	}
+	@GetMapping("/removeProduct")
+	public String removeProduct(Model model, HttpSession session, Integer id) {
+		log.trace("Product removed");
+
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		Optional<Order> opt = svc.find(orders, id);
+		if (opt.isPresent()) {
+			Order order = opt.get();
+
+			orders.remove(order);
+		}
+
+		double sum = svc.sum(session);
+		model.addAttribute("sum", sum);
+		return "/cart";
+	}
 
 	@GetMapping("/home")
 	public String home(Model model, HttpSession session) {
@@ -224,6 +161,7 @@ public class MenuCtr {
 		if (orders != null) {
 			model.addAttribute("count", totalQuantity(orders));
 		}
+
 		model.addAttribute("categories", repoC.findAll());
 		return "/category";
 	}
