@@ -177,4 +177,10 @@ public class MenuCtr {
 		model.addAttribute("categories", repoC.findAll());
 		return "/category";
 	}
+	@GetMapping("/search")
+	public void search(String name, Model model) {
+		model.addAttribute("details", repo.search(name));
+		//repo.search(name);
+//		return"/menu";
+	}
 }

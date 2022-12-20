@@ -9,5 +9,7 @@ public interface MenuRepository extends CrudRepository<Menu, Integer> {
 	Iterable<Menu> findByCategoryId(Integer id);
 	@Query("select name, price from Menu m")
 	Iterable<Cart> menuFilter();	
-
+	
+	@Query("select m from Menu m where m.name like :name%")
+	Iterable<Menu> search(String name);
 }
