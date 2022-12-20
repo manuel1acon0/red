@@ -38,7 +38,10 @@ public class MenuCtr {
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
 		if (orders != null) {
-			model.addAttribute("count", totalQuantity(orders));
+			int result = orders.stream().mapToInt(o -> o.getQuantity()).sum();
+			model.addAttribute("count", result);
+
+			// model.addAttribute("count", totalQuantity(orders));
 		}
 
 		model.addAttribute("name", repoC.findById(id).get().getName());
@@ -57,22 +60,23 @@ public class MenuCtr {
 		return true;
 	}
 
-	public Integer totalQuantity(List<Order> orders) {
-		Integer sum = 0;
-		for (var order : orders) {
-			sum = sum + order.getQuantity();
-		}
-		return sum;
-	}
-
 	@GetMapping("/add")
 	public String add(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
 		log.trace("order added");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		if (orders == null) {
+			orders = new ArrayList<>();
+			session.setAttribute("orders", orders);
 
-		svc.add(session, id, model);
-		model.addAttribute("count", totalQuantity(orders));
+		}
+		int count = svc.add(id, orders);
+		if (count == 0) {
+			model.addAttribute("error", "Item does not exist");
+		} else {
+			model.addAttribute("count", count);
+		}
+
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		model.addAttribute("name", repoC.findById(categoryId).get().getName());
 		return "/menu";
@@ -83,10 +87,8 @@ public class MenuCtr {
 		log.trace("Order removed");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-
-		svc.remove(session, id);
+		model.addAttribute("count", svc.remove(id, orders));
 		model.addAttribute("name", repoC.findById(categoryId).get().getName());
-		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
 		return "/menu";
 	}
@@ -94,8 +96,10 @@ public class MenuCtr {
 	@GetMapping("/removeC")
 	public String removeC(HttpSession session, @RequestParam Integer id, Model model) {
 		log.trace("Order removed");
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
 
-		svc.remove(session, id);
+		svc.remove(id, orders);
 
 		double sum = svc.sum(session);
 		model.addAttribute("sum", sum);
@@ -108,10 +112,10 @@ public class MenuCtr {
 		log.trace("All orders removed");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		orders.clear();
+//		orders.removeAll(orders);
 
-		orders.removeAll(orders);
-
-		model.addAttribute("count", totalQuantity(orders));
+		model.addAttribute("count", 0);
 		model.addAttribute("categories", repoC.findAll());
 		return "/category";
 	}
@@ -127,8 +131,9 @@ public class MenuCtr {
 	@GetMapping("/addC")
 	public String addC(HttpSession session, @RequestParam Integer id, Model model) {
 		log.trace("order added");
-
-		svc.add(session, id, model);
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		svc.add(id, orders);
 		double sum = svc.sum(session);
 
 		model.addAttribute("sum", sum);
@@ -159,14 +164,15 @@ public class MenuCtr {
 		log.trace("enter categories");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		if (orders == null) {
-			orders = new ArrayList<>();
-			session.setAttribute("orders", orders);
-			
-		}
 		if (orders != null) {
-			model.addAttribute("count", totalQuantity(orders));
+			int result = orders.stream().mapToInt(o -> o.getQuantity()).sum();
+			model.addAttribute("count", result);
 		}
+//		if (orders == null) {
+//			orders = new ArrayList<>();
+//			session.setAttribute("orders", orders);
+//			
+//		}
 
 		model.addAttribute("categories", repoC.findAll());
 		return "/category";
