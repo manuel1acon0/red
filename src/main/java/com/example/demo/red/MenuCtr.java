@@ -146,8 +146,8 @@ public class MenuCtr {
 	}
 
 	@GetMapping("/removeC")
-	public String removeC(HttpSession session, @RequestParam Integer id, Model model,
-			@RequestParam Integer categoryId) {
+	public String removeC(HttpSession session, @RequestParam Integer id, Model model
+			) {
 		log.trace("Order removed");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
@@ -166,7 +166,7 @@ public class MenuCtr {
 	}
 
 	@GetMapping("/addC")
-	public String addC(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
+	public String addC(HttpSession session, @RequestParam Integer id, Model model) {
 		log.trace("order added");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
