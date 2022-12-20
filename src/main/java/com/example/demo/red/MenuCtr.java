@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -158,6 +159,11 @@ public class MenuCtr {
 		log.trace("enter categories");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		if (orders == null) {
+			orders = new ArrayList<>();
+			session.setAttribute("orders", orders);
+			
+		}
 		if (orders != null) {
 			model.addAttribute("count", totalQuantity(orders));
 		}

@@ -65,15 +65,17 @@ public class OrderSvc {
 	public void add(HttpSession session, @RequestParam Integer id,Model model) {
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		if (orders == null) {
-			orders = new ArrayList<>();
-			session.setAttribute("orders", orders);
-		}
-		Order order = null;
+//		
+//		if (orders == null) {
+//			orders = new ArrayList<>();
+//			session.setAttribute("orders", orders);
+//			
+//		}
+//		Order order = null;
 		if (findId(id, orders)) {
 			Optional<Menu> opt = repo.findById(id);
 			if (opt.isPresent()) {
-				order = new Order(opt.get());
+				Order order = new Order(opt.get());
 				order.setQuantity(1);
 				orders.add(order);
 
