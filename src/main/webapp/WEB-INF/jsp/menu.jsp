@@ -26,7 +26,7 @@
 		</a>
 		</div>
 		<div class="offset-1 col-8">
-			<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">CATEGORIE</h1>
+			<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">${name}</h1>
 				
 		</div>
 	
