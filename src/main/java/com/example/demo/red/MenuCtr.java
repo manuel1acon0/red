@@ -31,8 +31,14 @@ public class MenuCtr {
 	}
 
 	@GetMapping
-	public String detail(Model model, @RequestParam Integer id) {
+	public String detail(Model model, @RequestParam Integer id, HttpSession session,@RequestParam String name) {
 		log.trace("show menu detail");
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		if (orders != null) {
+			model.addAttribute("count", totalQuantity(orders));
+		}
+		model.addAttribute("name", name);
 		model.addAttribute("details", repo.findByCategoryId(id));
 		return "/menu";
 
@@ -41,29 +47,28 @@ public class MenuCtr {
 	public boolean findId(Integer id, List<Order> orders) {
 		for (var order : orders) {
 			if (order.getId() == id) {
-				order.setQuantity(order.getQuantity()+1);
+				order.setQuantity(order.getQuantity() + 1);
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	public Integer totalQuantity (List<Order> orders) {
-		Integer sum=0;
+
+	public Integer totalQuantity(List<Order> orders) {
+		Integer sum = 0;
 		for (var order : orders) {
-			sum=sum+order.getQuantity();
+			sum = sum + order.getQuantity();
 		}
 		return sum;
 	}
-	
-	public boolean findOrder(List<Order> orders) {
-		for (var order : orders) {
-			if (order.getQuantity() > 1) {
-				order.setQuantity(order.getQuantity()-1);
-				return false;
+
+	private Optional<Order> find(List<Order> orders, Integer id) {
+		for (Order order : orders) {
+			if (order.getId() == id) {
+				return Optional.of(order);
 			}
 		}
-		return true;
+		return Optional.empty();
 	}
 
 	@GetMapping("/add")
@@ -97,10 +102,15 @@ public class MenuCtr {
 		log.trace("Order removed");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		Optional<Menu> menu = repo.findById(id);
-		Order order = new Order(menu.get());
-		if (findOrder(orders)) {
-			orders.remove(order);	
+		Optional<Order> opt = find(orders, id);
+		if (opt.isPresent()) {
+			Order order = opt.get();
+			int quantity = order.getQuantity();
+			if (quantity == 1) {
+				orders.remove(order);
+			} else {
+				order.setQuantity(quantity - 1);
+			}
 		}
 		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("details", repo.findByCategoryId(categoryId));
@@ -115,7 +125,7 @@ public class MenuCtr {
 
 		orders.removeAll(orders);
 
-		model.addAttribute("count",totalQuantity(orders));
+		model.addAttribute("count", totalQuantity(orders));
 		model.addAttribute("categories", repoC.findAll());
 		return "/category";
 	}
@@ -128,10 +138,77 @@ public class MenuCtr {
 		double sum = 0;
 		for (var order : orders) {
 
-			sum = sum + order.getPrice()*order.getQuantity();
+			sum = sum + order.getPrice() * order.getQuantity();
 
 		}
 		model.addAttribute("sum", sum);
 		return "/cart";
+	}
+
+	@GetMapping("/removeC")
+	public String removeC(HttpSession session, @RequestParam Integer id, Model model,
+			@RequestParam Integer categoryId) {
+		log.trace("Order removed");
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		Optional<Order> opt = find(orders, id);
+		if (opt.isPresent()) {
+			Order order = opt.get();
+			int quantity = order.getQuantity();
+			if (quantity == 1) {
+				orders.remove(order);
+			} else {
+				order.setQuantity(quantity - 1);
+			}
+		}
+
+		return "/cart";
+	}
+
+	@GetMapping("/addC")
+	public String addC(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
+		log.trace("order added");
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		if (orders == null) {
+			orders = new ArrayList<>();
+			session.setAttribute("orders", orders);
+		}
+		Order order = null;
+		if (findId(id, orders)) {
+			Optional<Menu> opt = repo.findById(id);
+			if (opt.isPresent()) {
+				order = new Order(opt.get());
+				order.setQuantity(1);
+				orders.add(order);
+
+			} else {
+				model.addAttribute("error", "Item does not exist");
+			}
+		}
+
+		return "cart";
+	}
+
+//	@GetMapping("/cartM")
+//	public String cartM(Model model, HttpSession session) {
+//		log.trace("Returning to menu");
+//		@SuppressWarnings("unchecked")
+//		List<Order> orders = (List<Order>) session.getAttribute("orders");
+//		model.addAttribute("count", totalQuantity(orders));
+//		model.addAttribute("details", repoC.findAll());
+//		return "/category";
+//	}
+
+	@GetMapping("/home")
+	public String home(Model model, HttpSession session) {
+		log.trace("enter categories");
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		if (orders != null) {
+			model.addAttribute("count", totalQuantity(orders));
+		}
+		model.addAttribute("categories", repoC.findAll());
+		return "/category";
 	}
 }

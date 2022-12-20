@@ -1,5 +1,9 @@
 package com.example.demo.red;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 //import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -18,17 +22,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CategoryCtr {
 	private static Logger log = LoggerFactory.getLogger(CategoryCtr.class);
 	// private ManuelPhoneSvc svc;
-	private CategoryRepository repo;
+	private CategoryRepository repoC;
 
-	public CategoryCtr(CategoryRepository repo) {
+	public CategoryCtr(CategoryRepository repoC) {
 		// this.svc = svc;
-		this.repo = repo;
+		this.repoC = repoC;
 	}
 
 	@GetMapping
-	public String home(Model model) {
+	public String home(Model model,HttpSession session) {
 		log.trace("enter categories");
-		model.addAttribute("categories", repo.findAll());
+		@SuppressWarnings("unchecked")
+		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		session.addAttrinute("count",totalQuantity(orders) );
+		model.addAttribute("categories", repoC.findAll());
 		return "/category";
 	}
 }
