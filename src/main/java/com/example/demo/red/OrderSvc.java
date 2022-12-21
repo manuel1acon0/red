@@ -1,6 +1,5 @@
 package com.example.demo.red;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +20,6 @@ public class OrderSvc {
 
 	public int remove(Integer id, List<Order> orders) {
 
-//		@SuppressWarnings("unchecked")
-//		List<Order> orders = (List<Order>) session.getAttribute("orders");
 		Optional<Order> opt = find(orders, id);
 		if (opt.isPresent()) {
 			Order order = opt.get();
@@ -76,18 +73,11 @@ public class OrderSvc {
 		return sum;
 	}
 
-	public int add(@RequestParam Integer id,List<Order> orders) {
-//		@SuppressWarnings("unchecked")
-//		List<Order> orders = (List<Order>) session.getAttribute("orders");
+	public int add(@RequestParam Integer id, List<Order> orders) {
 
-//		if (orders == null) {
-//			orders = new ArrayList<>();
-//			session.setAttribute("orders", orders);
-//
-//		}
 		int increased = increase(id, orders);
 		if (increased > 0) {
-			return increased;
+			return totalQuantity(orders);
 		} else {
 			Optional<Menu> opt = repo.findById(id);
 			if (opt.isPresent()) {
@@ -99,19 +89,7 @@ public class OrderSvc {
 				return 0;
 			}
 		}
-//		if (!increase(id, orders)) {
-//			Optional<Menu> opt = repo.findById(id);
-//			if (opt.isPresent()) {
-//				Order order = new Order(opt.get());
-//				order.setQuantity(1);
-//				orders.add(order);
-//				return totalQuantity(orders);
-//			} else {
-//				return 0;
-//				
-//			}
-//		}
-//		return 1;
+
 	}
 
 }

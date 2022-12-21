@@ -41,11 +41,15 @@ public class MenuCtr {
 			int result = orders.stream().mapToInt(o -> o.getQuantity()).sum();
 			model.addAttribute("count", result);
 
-			// model.addAttribute("count", totalQuantity(orders));
+		}
+		try {
+			model.addAttribute("details", repo.findByCategoryId(id));
+			model.addAttribute("name", repoC.findById(id).get().getName());
+		} catch (Exception ex) {
+			log.error("Id not found");
+			return "/category";
 		}
 
-		model.addAttribute("name", repoC.findById(id).get().getName());
-		model.addAttribute("details", repo.findByCategoryId(id));
 		return "/menu";
 
 	}
@@ -63,8 +67,17 @@ public class MenuCtr {
 	@GetMapping("/add")
 	public String add(HttpSession session, @RequestParam Integer id, Model model, @RequestParam Integer categoryId) {
 		log.trace("order added");
+
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
+		try {
+
+			model.addAttribute("details", repo.findByCategoryId(categoryId));
+			model.addAttribute("name", repoC.findById(categoryId).get().getName());
+		} catch (Exception ex) {
+			log.error("Item could not be added");
+			return "/category";
+		}
 		if (orders == null) {
 			orders = new ArrayList<>();
 			session.setAttribute("orders", orders);
@@ -76,9 +89,13 @@ public class MenuCtr {
 		} else {
 			model.addAttribute("count", count);
 		}
+		try {
+			Optional<Order> order = svc.find(orders, id);
+			model.addAttribute("quantity", order.get().getQuantity());
+		} catch (Exception ex) {
+			log.error("Item could not be added");
 
-		model.addAttribute("details", repo.findByCategoryId(categoryId));
-		model.addAttribute("name", repoC.findById(categoryId).get().getName());
+		}
 		return "/menu";
 	}
 
@@ -87,9 +104,19 @@ public class MenuCtr {
 		log.trace("Order removed");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
-		model.addAttribute("count", svc.remove(id, orders));
-		model.addAttribute("name", repoC.findById(categoryId).get().getName());
-		model.addAttribute("details", repo.findByCategoryId(categoryId));
+		try {
+			model.addAttribute("name", repoC.findById(categoryId).get().getName());
+			model.addAttribute("details", repo.findByCategoryId(categoryId));
+		} catch (Exception ex) {
+			log.error("item could not be removed");
+			return "/category";
+		}
+		try {
+			model.addAttribute("count", svc.remove(id, orders));
+		} catch (Exception ex) {
+			log.error("item could not be removed");
+		}
+
 		return "/menu";
 	}
 
@@ -113,7 +140,6 @@ public class MenuCtr {
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
 		orders.clear();
-//		orders.removeAll(orders);
 
 		model.addAttribute("count", 0);
 		model.addAttribute("categories", repoC.findAll());
@@ -160,7 +186,7 @@ public class MenuCtr {
 	}
 
 	@GetMapping("/home")
-	public String home(Model model, HttpSession session) {
+	public String home(Model model, HttpSession session, HttpSession session2) {
 		log.trace("enter categories");
 		@SuppressWarnings("unchecked")
 		List<Order> orders = (List<Order>) session.getAttribute("orders");
@@ -168,19 +194,15 @@ public class MenuCtr {
 			int result = orders.stream().mapToInt(o -> o.getQuantity()).sum();
 			model.addAttribute("count", result);
 		}
-//		if (orders == null) {
-//			orders = new ArrayList<>();
-//			session.setAttribute("orders", orders);
-//			
-//		}
-
-		model.addAttribute("categories", repoC.findAll());
+		session2.setAttribute("categories", repoC.findAll());
 		return "/category";
 	}
+
 	@GetMapping("/search")
 	public String search(String name, Model model) {
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		model.addAttribute("details", repo.search(name));
 
-		return"/menu";
+		return "/menu";
 	}
 }
