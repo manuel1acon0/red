@@ -81,7 +81,7 @@
 					</div>
 					<c:forEach var="order" items="${orders}">
                     <c:if test="${order.id == detail.id}">
-                    <div class="col-2"  style="padding-top: 20px;" >${order.quantity}</div>
+                    <div  class="col-2"  id="quantity" >${order.quantity}</div>
                     <div class="col-5">
                         <a href="/menu/remove?id=${detail.id}&categoryId=${detail.categoryId}">
                         <button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;"><img src="/red/pic/meno.png" alt="remove" width="30"></button>
@@ -212,15 +212,12 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <form action="/menu/search" >
+                          <form action="/menu/search" >
 						<input type="text" name="name" style="padding-top: 10px; padding-bottom: 10px; margin-left: 10px; margin-top: 5px;">
+                        <button class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-bottom: 5px;margin-top: 5px; margin-bottom: 4px"><img src="/red/pic/lente.PNG" alt="cerca" width="35"></button>
                         </form>
                         </div>
-                        <div class="modal-footer">
-                            <a href="/menu/search?name=${detail.name}">
-								<button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-bottom: 5px;margin-top: 5px;"><img src="/red/pic/lente.PNG" alt="cerca" width="60"></button>
-     						</a>
-                        </div>
+                      
                     </div>
                 </div>
             </div>

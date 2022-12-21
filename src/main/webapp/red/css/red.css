@@ -2,6 +2,8 @@
 	background-color: buttonshadow;
 }
 
+
+
 .table {
     margin-top: 10px;
 /*     border: 2px solid black; */
@@ -14,6 +16,19 @@
 /*     border: 1px solid black; */
 /*     padding: 3px; */
     text-align: center;
+}
+
+#quantity{
+	color: white;
+	background-color: red;
+	border-radius: 10px 10px 10px 10px; 
+	padding-bottom: 4px;
+	padding-top: 4px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .notify {
