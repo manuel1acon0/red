@@ -49,9 +49,11 @@
 				<button type="button" class="btn btn-dark"><img src="/red/pic/piu.png" alt="add" width="15"></button>
 				</a></div>
 				<div class="offset-1 col-1" style="padding-top: 8px">${order.quantity}</div>
+				<c:if test="${order.quantity > 1}">
 				<div class="offset-1 col-1"><a href="/menu/removeC?id=${order.id}">
 				<button type="button" class="btn btn-dark"><img src="/red/pic/meno.png" alt="remove" width="15"></button>
 				</a></div>
+				</c:if>
 				</div>
 				</td>
 				<td>

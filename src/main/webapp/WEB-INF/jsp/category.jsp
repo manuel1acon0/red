@@ -19,19 +19,14 @@
 	
 	<div class="row">
 	<nav class="navbar fixed-top navbar-light bg-light">
-		<div class="col-3">
-			<form action="/menu/search" >
-			<input type="text" name="name" style="padding-top: 10px; padding-bottom: 10px; margin-left: 10px; margin-top: 5px;">
-			<button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-bottom: 5px;margin-top: 5px;"><img src="/red/pic/lente.PNG" alt="cerca" width="60"></button>
-     		</form>
-		</div>
-		<div class="offset-1 col-5">
+		
+		<div class="offset-2 col-8">
 		<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">MENU</h1>
 		</div>
-		<div class=" offset-1 col-2">
+		<div class=" offset-1 col-1">
 		<div class="container">
 		<c:if test="${not empty count}">
-			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="carrello" width="60"></button> 
+			<a href="/menu/finish"><button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 1px;padding-bottom: 5px; margin-top: 5px;" ><img src="/red/pic/Cart.PNG" alt="carrello" width="55"></button> 
 			</a>	
 		</c:if>
 		
@@ -47,54 +42,57 @@
 		
 	</nav>
 	</div>
+	<div style="margin-top: 100px;"></div>
 		<p>	
 		<div class="table" class="img-thumbnail">
 			<c:forEach var="category" items="${categories}">
 				<a href="/menu?id=${category.id}">
 				
-					<button class="btn btn-light" class="rounded" style="margin-top: 90px;">
+					<button class="btn btn-light" class="rounded">
 						<div>
 							<h1>${category.name}</h1>
 							<br> <img src="/red/pic/${category.name}.PNG" class="flex" alt=" ${category.name}">
 						</div>
 					</button>
-				</p>
+				
 				</a>
+				</p>
 				<br>
 			</c:forEach>
-
+		
 		</div>
+		<div style="margin-top: 60px;"></div>
 		<nav class="navbar fixed-bottom navbar-light bg-light">
 			<div class="col-1">
 				<a href="/menu/home"><button type="button" class="btn btn-dark" 
-				style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
-				<img src="/red/pic/Home.PNG" alt="Home" width="60">
+				style="padding-right: 5px;padding-left: 5px;padding-top: 3px;padding-bottom: 5px;height: 48px;width: 56px;margin-left: 5px;">
+				<img src="/red/pic/Home.png" alt="Home" width="40">
 				</button> 
 <!-- 		<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button>  -->
 				</a>
 			</div>
             <!-- Button trigger modal 1 -->
             <button type="button" data-bs-toggle="modal" data-bs-target="#menuModal"
-            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
-                Menu
+            class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 3px;padding-bottom: 5px;height: 48px;width: 56px;">
+            <img src="/red/pic/Menu.png" alt="Menu" width="40">
             </button>
             
             <!-- Button trigger modal 4 -->
             <button type="button" data-bs-toggle="modal" data-bs-target="#cercaModal"
-            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
-                Cerca
+            class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 3px;padding-bottom: 5px;height: 48px;width: 56px;">
+            <img src="/red/pic/lente.PNG" alt="cerca" width="45">
             </button>
             
             <!-- Button trigger modal 2 -->
             <button type="button" data-bs-toggle="modal" data-bs-target="#infoModal"
-            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
-            <img src="/red/pic/Info.PNG" alt="Info" width="60">
+            class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 3px;padding-bottom: 5px;height: 48px;width: 56px;">
+            <img src="/red/pic/Info.png" alt="Info" width="45">
             </button>
             
             <!-- Button trigger modal 3 -->
-            <button type="button" data-bs-toggle="modal" data-bs-target="#contattiModal"
-            class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">
-                Contatti
+            <button type="button" data-bs-toggle="modal" data-bs-target="#condividiModal"
+            class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-top: 3px;padding-bottom: 5px;height: 48px;width: 56px;">
+            <img src="/red/pic/Condividi.png" alt="Condividi" width="45">
             </button>
 
 		</nav>
@@ -106,7 +104,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="menuModalLabel">Menu</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                         	<div class="table" class="img-thumbnail">
@@ -135,47 +133,33 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="infoModalLabel">Info</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                         <h5>Pizzeria</h5>
                         <h5>Telefono</h5>
                         <h5>Indirizzo</h5>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                Save changes
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
             
             <!-- Modal 3 -->
-            <div class="modal fade" id="contattiModal" tabindex="-1" aria-labelledby="contattiModalLabel"
+            <div class="modal fade" id="condividiModal" tabindex="-1" aria-labelledby="condividiModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="contattiModalLabel">Contatti</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="condividiModalLabel">Condividi</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                         <h5>Whatsapp</h5>
                         <h5>Facebook</h5>
                         <h5>Instagram</h5>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                Save changes
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -187,21 +171,19 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="cercaModalLabel">Cerca</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                         <form action="/menu/search" >
 						<input type="text" name="name" style="padding-top: 10px; padding-bottom: 10px; margin-left: 10px; margin-top: 5px;">
+                        <button class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-bottom: 5px;margin-top: 5px; margin-bottom: 4px"><img src="/red/pic/lente.PNG" alt="cerca" width="35"></button>
                         </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                Save changes
-                            </button>
-                        </div>
+<!--                         <div class="modal-footer"> -->
+<%--                             <a href="/menu/search?name=${detail.name}"> --%>
+<!-- 								<button type="button" class="btn btn-dark" style="padding-right: 5px;padding-left: 5px;padding-bottom: 5px;margin-top: 5px;"><img src="/red/pic/lente.PNG" alt="cerca" width="60"></button> -->
+<!--      						</a> -->
+<!--                         </div> -->
                     </div>
                 </div>
             </div>

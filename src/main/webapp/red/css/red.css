@@ -25,6 +25,11 @@
     text-align: center;
 }
 
+.modal-header {
+	background-color: #2b2b2b;
+	color: white;
+}
+
 #titleA{
 	color: white;
 	font-style:oblique;
