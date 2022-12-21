@@ -81,7 +81,7 @@
 					</div>
 					<c:forEach var="order" items="${orders}">
                     <c:if test="${order.id == detail.id}">
-                    <div class="col-2"  style="padding-top: 20px;">${order.quantity}</div>
+                    <div class="col-2"  style="padding-top: 20px;" >${order.quantity}</div>
                     <div class="col-5">
                         <a href="/menu/remove?id=${detail.id}&categoryId=${detail.categoryId}">
                         <button type="button" class="btn btn-dark" style="padding-right: 60px;padding-left: 60px;padding-top: 10px;padding-bottom: 10px;"><img src="/red/pic/meno.png" alt="remove" width="30"></button>
