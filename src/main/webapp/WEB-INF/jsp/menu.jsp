@@ -22,13 +22,7 @@
 <!--   <a class="navbar-brand" href="#">Fixed top</a> -->
 <!-- </nav> -->
 
- 	
-	<div class="col-1">
-		<a href="/menu/home"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;">Menu </button> 
-<!-- 		<a href="/red"><button type="button" class="btn btn-dark" style="padding-right: 30px;padding-left: 30px;padding-top: 20px;padding-bottom: 20px; margin-top: 5px;"> Categorie </button>  -->
-		</a>
-		</div>
-		<div class="offset-1 col-8">
+		<div class="offset-2 col-8">
 			<h1 class="img-thumbnail" align="center" style="margin-top: 5px;">${name}</h1>
 				
 		</div>
@@ -54,13 +48,12 @@
 	</div>
 	</nav>
 	</div>
-	
+	<div style="margin-top: 100px;"></div>
 	
 		<div class="table">
 			<c:forEach var="detail" items="${details}">
-				<p>
 					
-					<div class="img-thumbnail" style="margin-left: 150px;margin-right: 150px;margin-top: 120px;">
+					<div class="img-thumbnail" style="margin-left: 150px;margin-right: 150px;margin-top: 20px;">
 					<div class="row">
 					<div class="col-5">
 						<h3>${detail.name}</h3>
@@ -103,11 +96,10 @@
 <!-- 						</a> -->
 <!-- 					</div> -->
 					</div>
-					</div>
-				</p>		
+					</div>	
 			</c:forEach>	
 		</div>
-		<div style="margin-top: 60px;"></div>
+		<div style="margin-top: 80px;"></div>
 		<nav class="navbar fixed-bottom navbar-light bg-light">
 			<div class="col-1">
 				<a href="/menu/home"><button type="button" class="btn btn-dark" 

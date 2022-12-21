@@ -43,12 +43,11 @@
 	</nav>
 	</div>
 	<div style="margin-top: 100px;"></div>
-		<p>	
 		<div class="table" class="img-thumbnail">
 			<c:forEach var="category" items="${categories}">
 				<a href="/menu?id=${category.id}">
 				
-					<button class="btn btn-light" class="rounded">
+					<button class="btn btn-light" class="rounded"  style="margin-top: 20px">
 						<div>
 							<h1>${category.name}</h1>
 							<br> <img src="/red/pic/${category.name}.PNG" class="flex" alt=" ${category.name}">
@@ -56,7 +55,6 @@
 					</button>
 				
 				</a>
-				</p>
 				<br>
 			</c:forEach>
 		
